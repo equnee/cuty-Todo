@@ -1,0 +1,38 @@
+<!-- <div class="full-screen page-content" style="background-color: rgb(253, 224, 224);heigh:100%;">
+    <div class="wrapper" style="margin:100px 460px">
+        <img class="logo-img" src="./assets/img/logo.png" alt="">
+        <div class="text-wrapper">
+            <h1 class="title-text">
+                Cuty
+            </h1>
+        </div>
+
+        <input nz-input nzSize="large" style="width:300px" placeholder="请输入你喜欢的用户名" #usernameInput [(ngModel)]="username">
+        <button nz-button nzSize="large" (click)="completeSetup()" [disabled]="!usernameInput.value">
+        开始
+      </button>
+        <br>
+        <br>
+        <div class="copy-right">
+            Copyright © 2019 peach
+        </div>
+
+    </div>
+</div> -->
+
+<div style="background: #ECECEC;padding:30px;width:inherit;height: 100%;">
+    <nz-card style="width:350px;margin-left: 500px;margin-top: 200px;" [nzBordered]="false" nzTitle="Cuty" [nzExtra]="extraTemplate">
+        <br>
+        <p><input nz-input nzSize="large" style="width:300px" placeholder="请输入你喜欢的用户名" #usernameInput [(ngModel)]="username"></p>
+        <button nz-button nzSize="large" [nzType]="'primary'" style="width: 300px" (click)=" completeSetup() " [disabled]="!usernameInput.value ">
+        开始
+      </button>
+        <div class="copy-right">
+            <br>
+            <p style="text-align:center;">Copyright © 2019 peach</p>
+        </div>
+    </nz-card>
+</div>
+<!-- <ng-template #extraTemplate>
+    <a>More</a>
+</ng-template> -->
