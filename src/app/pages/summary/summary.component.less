@@ -37,16 +37,41 @@
     }
   }
   
-  .back-btn {
-    position: absolute;
-    left: 16px;
-    top: 20px;
-    padding: 12px;
-    color: white;
+  // .back-btn {
+  //   position: absolute;
+  //   left: 16px;
+  //   top: 20px;
+  //   padding: 12px;
+  //   // color: white;
+  //   span:hover {
+  //     color: red;
+  //   }
+  // }
+  // // i{
+  // //     color:white
+  // // }
+  // nz-layout{
+  //   height:100%;
+  // }
+
+ //鼠标放置悬浮
+.floating-btn {
+  padding: 22px;
+  // color:white;
+  position: absolute;
+  left: 16px;
+  top: 20px;
+
+    transition: all 0.1s linear; //all变化速度：上升
+
+  span {
+    transition: all 0.2s linear; //span变化速度：颜色
   }
-  i{
-      color:white
+
+  &:hover {
+    transform: translate3d(0, -2px, 0);
+    span {
+      color: red;
+    }
   }
-  nz-layout{
-    height:100%;
-  }
+}

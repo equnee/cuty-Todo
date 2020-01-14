@@ -6,12 +6,23 @@ import { Todo, List } from '../../../../../domain/entities';
 import { TodoService } from '../../../../services/todo/todo.service';
 import { ListService } from '../../../../services/list/list.service';
 import { floorToDate, getTodayTime } from '../../../../../utils/time';
+import { RankBy } from 'src/domain/type';
+import { Router } from '@angular/router';
+
+//排序
+const rankerGenerator = (type: RankBy = 'title'): any => {
+  if (type === 'completeFlag') {
+    return (t1: Todo, t2: Todo) => t1.completedFlag && !t2.completedFlag;
+  }
+  return (t1: Todo, t2: Todo) => t1[ type ] > t2[ type ];
+};
 
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
   styleUrls: [ './todo.component.less' ]
 })
+
 export class TodoComponent implements OnInit, OnDestroy {
   private dropdown: NzDropdownContextComponent;
   private destory$ = new Subject();
@@ -23,7 +34,8 @@ export class TodoComponent implements OnInit, OnDestroy {
   constructor(
     private listService: ListService,
     private todoService: TodoService,
-    private dropdownService: NzDropdownService
+    private dropdownService: NzDropdownService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -33,29 +45,40 @@ export class TodoComponent implements OnInit, OnDestroy {
         this.lists = lists;
       });
 
-    combineLatest(this.listService.currentUuid$, this.todoService.todo$)
+    combineLatest(
+      this.listService.currentUuid$,
+      this.todoService.todo$,
+      this.todoService.rank$,
+      
+      )
       .pipe(takeUntil(this.destory$))
       .subscribe(sources => {
-        this.processTodos(sources[ 0 ], sources[ 1 ]);
+        this.processTodos(sources[ 0 ], sources[ 1 ], sources[ 2 ],);
       });
 
     this.todoService.getAll();
     this.listService.getAll();
+
+    
+
   }
 
   ngOnDestroy() {
     this.destory$.next();
+    this.destory$.complete();
   }
 
-  private processTodos(listUUID: string, todos: Todo[]): void {
+  private processTodos(listUUID: string, todos: Todo[], rank: RankBy): void {
     const filteredTodos = todos
+     
       .filter(todo => {
         return ((listUUID === 'today' && todo.planAt && floorToDate(todo.planAt) <= getTodayTime())
           || (listUUID === 'todo' && (!todo.listUUID || todo.listUUID === 'todo'))
           || (listUUID === todo.listUUID));
       })
-      .map(todo => Object.assign({}, todo) as Todo);
-
+      .map(todo => Object.assign({}, todo) as Todo)
+      .sort(rankerGenerator(rank))
+      
     this.todos = [].concat(filteredTodos);
   }
 
@@ -95,4 +118,25 @@ export class TodoComponent implements OnInit, OnDestroy {
   close(): void {
     this.dropdown.close();
   }
+
+
+
+  click(uuid: string): void {
+    this.router.navigateByUrl(`/main/${uuid}`);
+  }
+
+//drawer
+
+// visible = false;
+
+// open(): void {
+//   this.visible = true;
+// }
+
+// closei(): void {
+//   this.visible = false;
+// }
+
+
+
 }

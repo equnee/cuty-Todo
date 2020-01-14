@@ -29,6 +29,7 @@ export class ListComponent implements OnInit, OnDestroy {
   @ViewChild('listRenameInput',{static:false}) private listRenameInput: ElementRef;
   @ViewChild('listInput',{read:ElementRef,static:false}) private listInput: ElementRef;
 
+
   lists: List[];
   currentListUuid: string;
   contextListUuid: string;

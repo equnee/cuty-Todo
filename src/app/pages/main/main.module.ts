@@ -2,24 +2,27 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainComponent } from './main.component';
 import { MainRoutingModule } from './main-routing.module';
-import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { LeftControlComponent } from './left-control/left-control.component';
-import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
-import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
-import { NzIconModule } from 'ng-zorro-antd/icon';
+import { ListComponent } from './left-control/list/list.component';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { RightControlComponent } from './right-control/right-control.component';
+import { HeaderComponent } from './right-control/header/header.component';
+import { QuickAddComponent } from './right-control/quick-add/quick-add.component';
+import { TodoComponent } from './right-control/todo/todo.component';
+import { SuggestComponent } from './right-control/header/suggest/suggest.component';
+import { DetailComponent } from './detail/detail.component';
+
 
 
 @NgModule({
-  declarations: [MainComponent, LeftControlComponent],
+  declarations: [MainComponent, LeftControlComponent, ListComponent, RightControlComponent, HeaderComponent, QuickAddComponent, TodoComponent, SuggestComponent, DetailComponent],
   imports: [
     CommonModule,
     MainRoutingModule,
-    NzLayoutModule,
-    NzCollapseModule,
     NgZorroAntdModule,
-    NzDropDownModule,
-    NzIconModule
+    SharedModule,
+
   ]
 })
 export class MainModule { }

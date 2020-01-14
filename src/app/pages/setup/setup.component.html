@@ -21,7 +21,7 @@
 </div> -->
 
 <div style="background: #ECECEC;padding:30px;width:inherit;height: 100%;">
-    <nz-card style="width:350px;margin-left: 500px;margin-top: 200px;" [nzBordered]="false" nzTitle="Cuty" [nzExtra]="extraTemplate">
+    <nz-card style="width:350px;margin-left: 500px;margin-top: 200px;" [nzBordered]="false" nzTitle="Cuty">
         <br>
         <p><input nz-input nzSize="large" style="width:300px" placeholder="请输入你喜欢的用户名" #usernameInput [(ngModel)]="username"></p>
         <button nz-button nzSize="large" [nzType]="'primary'" style="width: 300px" (click)=" completeSetup() " [disabled]="!usernameInput.value ">

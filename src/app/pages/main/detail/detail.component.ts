@@ -2,7 +2,8 @@ import {
   Component,
   EventEmitter,
   OnInit,
-  Output
+  Output,
+  HostBinding
 } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
@@ -11,14 +12,19 @@ import { NzMessageService } from 'ng-zorro-antd';
 import { TodoService } from '../../../services/todo/todo.service';
 import { Todo } from '../../../../domain/entities';
 import { lessThanADay, floorToDate, getCurrentTime, getTodayTime, floorToMinute } from '../../../../utils/time';
+import { detailTransition } from 'src/app/shared/shared.animation';
+
+
 
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
-  styleUrls: [ './detail.component.less' ]
+  styleUrls: [ './detail.component.less' ],
+  animations: [detailTransition]
 })
 export class DetailComponent implements OnInit {
   @Output() changedTodo = new EventEmitter();
+  @HostBinding('@detailTransition') state = 'activated';
 
   private trueSource: Todo;
   currentTodo: Todo;
@@ -33,8 +39,10 @@ export class DetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log('d');
     this.route.paramMap.pipe(first()).subscribe((paramsMap: ParamMap) => {
       const id = paramsMap.get('id');
+      console.log(id);
       const todo = this.todoService.getByUUID(id);
       this.trueSource = todo;
       this.currentTodo = Object.assign({}, todo) as Todo;

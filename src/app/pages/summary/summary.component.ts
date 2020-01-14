@@ -2,7 +2,6 @@ import { Component, HostBinding, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NzNotificationService } from 'ng-zorro-antd';
 import { SummaryService } from './summary.service';
-import { pageSwitchTransition } from './summary.animation';
 import { LocalStorageService } from '../../services/local-storage/local-storage.service';
 import {
   START_USING_DATE,
@@ -10,18 +9,19 @@ import {
 } from '../../services/local-storage/local-storage.namespace';
 import { getTodayTime, ONE_DAY } from '../../../utils/time';
 import { Summary } from '../../../domain/entities';
+import { SammaryPageSwitchTransition } from 'src/app/shared/shared.animation';
 
 @Component({
   selector: 'app-summary',
   templateUrl: './summary.component.html',
   styleUrls: [ './summary.component.less' ],
-  animations: [ pageSwitchTransition ]
+  animations: [ SammaryPageSwitchTransition ]
 })
 export class SummaryComponent implements OnInit {
+  @HostBinding('@SammaryPageSwitchTransition') state = 'activated';
+  
   username = this.store.get(USERNAME) || 'username';
   dateCount = Math.floor((getTodayTime() - this.store.get(START_USING_DATE)) / ONE_DAY + 1);
-
-  @HostBinding('@pageSwitchTransition') private state = 'activated';
 
   constructor(
     private summaryService: SummaryService,

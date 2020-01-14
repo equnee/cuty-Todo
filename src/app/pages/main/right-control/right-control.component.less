@@ -7,6 +7,7 @@
   nz-header {
     background: #fff;
     padding: 0;
+    height:180px;
   }
 
   nz-content {
@@ -25,4 +26,29 @@
 
   nz-footer {
     text-align: center;
+  }
+
+  .quick-add-wrapper {
+    position: absolute;
+    left: 50%;
+    bottom: 40px;
+    width: 400px;
+    transform: translate3d(-50%, 0, 0);
+    transition: 0.2s ease all;
+
+    &.center {
+      bottom: 50%;
+    }
+  }
+
+
+  .right-control {
+    position: relative;  //于是input框框可以真正固定在下方了！
+    height: 100%;
+  
+    .header-wrapper {
+      height: 180px;
+      padding: 0;
+      background-color: white;
+    }
   }

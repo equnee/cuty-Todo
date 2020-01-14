@@ -57,6 +57,8 @@ export class ListService {
   setCurrentUuid(uuid: string): void {
     this.currentUuid = uuid;
     this.current = this.lists.find(l => l._id === uuid);
+    console.log(this.current);
+    console.log(this.currentUuid);
     this.broadCast();
   }
 

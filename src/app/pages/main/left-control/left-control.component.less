@@ -1,0 +1,62 @@
+
+div.header-wrapper {
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    line-height: 0;
+  
+    img {
+      margin-left: 8px;
+      width: 40px;
+      height: 40px;
+    }
+  
+    .username-text {
+      margin-left: 8px;
+      flex: 1;
+      line-height: 40px;
+      font-size: 14px;
+      color: white;
+    }
+  
+    .header-btn {
+      color: white;
+  
+      i {
+        font-size: 18px;
+      }
+    }
+  }
+  
+  .list-wrapper {
+    //overflow-y: scroll;
+    position: absolute;
+    top: 60px;
+    bottom: 48px;
+    width: 100%;
+    padding-bottom: 20px;
+  
+    .add-list-btn-wrapper {
+      margin-top: 8px;
+      text-align: center;
+    }
+  }
+  
+ //鼠标放置悬浮
+ .floating-btn {
+  padding: 12px;
+    transition: all 0.2s linear; //all变化速度：上升
+
+  span {
+    transition: all 0.2s linear; //span变化速度：颜色
+  }
+
+  &:hover {
+    transform: translate3d(0, -2px, 0);
+    span {
+      color: cornflowerblue;
+    }
+  }
+}
