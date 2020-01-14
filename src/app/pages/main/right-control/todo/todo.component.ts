@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 //排序
 const rankerGenerator = (type: RankBy = 'title'): any => {
   if (type === 'completeFlag') {
-    return (t1: Todo, t2: Todo) => t1.completedFlag && !t2.completedFlag;
+    return (t1: Todo, t2: Todo) => t1.completedFlag && !t2.completedFlag ? 1 : -1; //排序bug
   }
   return (t1: Todo, t2: Todo) => t1[ type ] > t2[ type ];
 };
