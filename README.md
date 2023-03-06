@@ -1,9 +1,6 @@
 # Cuty
 
-页面：http://todo.equne.fun/
-
 初步认识和实践 angular、typescript和ng-zorro框架。
-
 来自官方教程 快速上手NG-ZORRO：https://github.com/NG-ZORRO/today-ng-steps
 
 
